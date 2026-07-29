@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task & Finance Manager</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Task & Finance Manager</h1>
+
+        <!-- Authentication Section -->
+        <div id="auth-section">
+            <div class="auth-tabs">
+                <button class="auth-tab active" onclick="showAuthForm('register')" id="tab-register">Register</button>
+                <button class="auth-tab" onclick="showAuthForm('login')" id="tab-login">Login</button>
+            </div>
+
+            <div id="register-form" class="auth-form">
+                <input type="text" id="reg-username" placeholder="Username">
+                <input type="password" id="reg-password" placeholder="Password">
+                <button class="auth-submit" onclick="register()">Create Account</button>
+                <p id="reg-message" class="auth-message"></p>
+            </div>
+
+            <div id="login-form" class="auth-form" style="display:none;">
+                <input type="text" id="login-username" placeholder="Username">
+                <input type="password" id="login-password" placeholder="Password">
+                <button class="auth-submit" onclick="login()">Log In</button>
+                <p id="login-message" class="auth-message"></p>
+            </div>
+        </div>
+
+        <!-- Main Application Section -->
+        <div id="app-section" style="display:none;">
+            <div class="user-header">
+                <p>Logged in as <strong id="current-user"></strong></p>
+                <button class="btn-logout" onclick="logout()">Logout</button>
+            </div>
+
+            <h2>Dashboard</h2>
+            <div class="summary-cards">
+                <div class="card income">Income<br><span id="total-income">0</span></div>
+                <div class="card expense">Expenses<br><span id="total-expenses">0</span></div>
+                <div class="card savings">Savings<br><span id="total-savings">0</span></div>
+            </div>
+
+            <div class="charts-row">
+                <div class="chart-box">
+                    <canvas id="chart"></canvas>
+                </div>
+                <div class="chart-box">
+                    <canvas id="pie-chart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-box chart-box-wide">
+                <canvas id="trend-chart"></canvas>
+            </div>
+
+            <h2>Add Transaction</h2>
+            <div class="form-grid">
+                <input type="number" id="tx-amount" placeholder="Amount">
+                <select id="tx-type">
+                    <option value="income">Income</option>
+                    <option value="expense">Expense</option>
+                </select>
+                <input type="text" id="tx-category" placeholder="Category (e.g. food, salary)">
+                <input type="text" id="tx-description" placeholder="Description (optional)">
+            </div>
+            <button class="btn-submit" onclick="addTransaction()">Add Transaction</button>
+            <p id="tx-message"></p>
+
+            <h2>Transaction History</h2>
+            <div class="table-container">
+                <table id="tx-table">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Category</th>
+                            <th>Amount</th>
+                            <th>Description</th>
+                            <th>Date</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tx-list"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
