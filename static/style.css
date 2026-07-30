@@ -212,3 +212,16 @@ th {
     font-weight: bold;
     min-height: 1.2em;
 }
+@media (max-width: 480px) {
+    .summary-cards {
+        flex-direction: column;
+    }
+
+    .charts-row {
+        flex-direction: column;
+    }
+
+    .chart-box {
+        height: 250px;
+    }
+}
