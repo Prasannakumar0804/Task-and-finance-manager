@@ -213,8 +213,25 @@ th {
     min-height: 1.2em;
 }
 @media (max-width: 480px) {
+    body {
+        padding: 8px;
+    }
+
+    .container {
+        padding: 15px 10px;
+    }
+
     .summary-cards {
-        flex-direction: column;
+        gap: 6px;
+    }
+
+    .card {
+        padding: 10px 4px;
+        font-size: 0.8em;
+    }
+
+    .card span {
+        font-size: 1.1em;
     }
 
     .charts-row {
@@ -222,6 +239,16 @@ th {
     }
 
     .chart-box {
-        height: 250px;
+        height: 220px;
+        width: 100%;
+    }
+
+    .table-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    table {
+        min-width: 500px;
     }
 }
